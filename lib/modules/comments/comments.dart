@@ -9,6 +9,7 @@ class Comments extends StatefulWidget {
 
   @override
   _CommentsState createState() => _CommentsState();
+
 }
 
 class _CommentsState extends State<Comments> {
@@ -51,11 +52,14 @@ class _CommentsState extends State<Comments> {
       ],
     );
   }
-
+  @override
+  void initState() {
+    context.read<CommentProvider>().getCommentById();    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
 
-    context.read<CommentProvider>().getCommentById();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Comments",style: trackerStyle,),
@@ -70,10 +74,10 @@ class _CommentsState extends State<Comments> {
         withBorder: false,
         errorText: 'Comment cannot be blank',
         sendButtonMethod: () {
-          print("marwan  marwan");
+
           context.read<CommentProvider>().postCommentToTask(commentController.text);
 
-          /*if (formKey.currentState!.validate()) {
+          /*if (formKey.currentState!.validate()){
             // ignore: avoid_print
             print(commentController.text);
             setState(() {

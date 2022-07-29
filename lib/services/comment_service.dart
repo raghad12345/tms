@@ -32,13 +32,19 @@ class CommentService{
 
     var url = ServerConfig.domainName + ServerConfig.postCommentToTask;
     print("content $content");
-    Map map = {"body" : "mmm"};
+    Map<String, dynamic> map = {"body" : "qwerqwerqwer"};
     var body = json.encode(map);
     print("body is $body");
-    http.post(Uri.parse(url),headers: {
-    "Accept": "application/json",
-    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzFjM2NjZWE2YzAxN2M2ZTFlZWI3ZjlkODNkYjU0NDQwNmY4OGI2MDRhMDNlNmZkMGM2NWRiZTRiNmE3NmU1NWFhNGE4NjIzM2JhNGQxNzYiLCJpYXQiOjE2NTc2MTk4MzkuNTc4MDIyLCJuYmYiOjE2NTc2MTk4MzkuNTc4MDM2LCJleHAiOjE2ODkxNTU4MzkuNTA5NTcxLCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.sXhYWDQNSQ307CIELKg6Q2oleMpc0K8KRFhdIsvOC9EdDv9qZvOaUOc-dmr6duG4FdbACqa12gXxAiyElWgU9DzVp-llLXN1xROUp-7yiSgsAF1dfynBDgQUQAMSazXMyDl1efK4kjsRveldvKpKZKnzZ185J9vkicGQQMwIeJjlee5Wf0tg_ZihQxjOeQOyY3PIPuaEmjHJJvix9BoHgj6rXWhlyDxAGsfElcSqJjCDZkFiu-_DjcWk33CalEeZmwLxHFRfv22YRuVf2g3RZady8WfLOjc32TLncw1ROP6umSGp468ilyLDZ7yk4UY1lSiRb0bpohn2mJJ-qt-3u9S8N4JQDJbuS2ds6XavvxwQqQbq7pqlNvT8raBMIFMpV_vCSFu3d_VEn8l4CEf03nnQ6g5OMk9h9NH_3up8rS3PdTtHMhexfou-ZrE2fqVoVQqm2-QND2mbrmLrPQFfLPhHWhdOjr4_P62hYB0OSb_9SsMRqRHfVB489yNEY8TN2XNINrmBeVWbomP_OvdipFAkwo3-7zrODs3dKoaHbHQWucBUva1gqCR5XkyEpm0XB718qUlafzebEOzYQ4awU-4ars_u3Y14p8GC-x8HZsbrIQmnzAK8k3v8LafW5U0efPaG5KU-LAyIH1axNwSy93lzdFQxRoWZiCJ7RR4M-nQ",
-    },body: body);
+    try {
+     http.post(Uri.parse(url), headers: {
+      "Accept": "application/json",
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzFjM2NjZWE2YzAxN2M2ZTFlZWI3ZjlkODNkYjU0NDQwNmY4OGI2MDRhMDNlNmZkMGM2NWRiZTRiNmE3NmU1NWFhNGE4NjIzM2JhNGQxNzYiLCJpYXQiOjE2NTc2MTk4MzkuNTc4MDIyLCJuYmYiOjE2NTc2MTk4MzkuNTc4MDM2LCJleHAiOjE2ODkxNTU4MzkuNTA5NTcxLCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.sXhYWDQNSQ307CIELKg6Q2oleMpc0K8KRFhdIsvOC9EdDv9qZvOaUOc-dmr6duG4FdbACqa12gXxAiyElWgU9DzVp-llLXN1xROUp-7yiSgsAF1dfynBDgQUQAMSazXMyDl1efK4kjsRveldvKpKZKnzZ185J9vkicGQQMwIeJjlee5Wf0tg_ZihQxjOeQOyY3PIPuaEmjHJJvix9BoHgj6rXWhlyDxAGsfElcSqJjCDZkFiu-_DjcWk33CalEeZmwLxHFRfv22YRuVf2g3RZady8WfLOjc32TLncw1ROP6umSGp468ilyLDZ7yk4UY1lSiRb0bpohn2mJJ-qt-3u9S8N4JQDJbuS2ds6XavvxwQqQbq7pqlNvT8raBMIFMpV_vCSFu3d_VEn8l4CEf03nnQ6g5OMk9h9NH_3up8rS3PdTtHMhexfou-ZrE2fqVoVQqm2-QND2mbrmLrPQFfLPhHWhdOjr4_P62hYB0OSb_9SsMRqRHfVB489yNEY8TN2XNINrmBeVWbomP_OvdipFAkwo3-7zrODs3dKoaHbHQWucBUva1gqCR5XkyEpm0XB718qUlafzebEOzYQ4awU-4ars_u3Y14p8GC-x8HZsbrIQmnzAK8k3v8LafW5U0efPaG5KU-LAyIH1axNwSy93lzdFQxRoWZiCJ7RR4M-nQ",
+     }, body: {
+       'body' : content
+      });
+    }catch(error){
+     print("error message is $error");
+    }
    }
 
 

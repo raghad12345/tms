@@ -14,6 +14,7 @@ class CommentProvider with ChangeNotifier{
     print("hello world");
      await CommentService.postCommentToTask(content);
 
-     comments = await CommentService.getCommentByTaskId();
+     comments = await getCommentById();
+
    }
 }
