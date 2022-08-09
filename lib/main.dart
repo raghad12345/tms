@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appName,
 
-      initialRoute: GetStorage().hasData('token') ?'/teams' : '/comments',
+      initialRoute: GetStorage().hasData('token') ?'/teams' : '/Users',
 
       builder: EasyLoading.init(),
       routes:
@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
         '/reports':(context){return const Reports();},
         '/team':(context){return const Team();},
         '/teams':(context){return const Teams();},
-        '/user':(context){return const User();},
+        '/user':(context){return  User();},
         '/add_user' : (context) { return ChangeNotifierProvider<UserController>(
             create: (_) => userController,
             child:  AddUser()); },

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tracker/models/all_users_model.dart';
 
 import '../../shared/constants.dart';
 
 class User extends StatelessWidget {
-  const User({Key? key}) : super(key: key);
+  late Map<String,dynamic> passedData;
+   User({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+   passedData = ModalRoute.of(context)!.settings.arguments! as Map<String,dynamic>;
     Size size =MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +39,7 @@ class User extends StatelessWidget {
 
                 decoration: const BoxDecoration(color: appFo,
                   image:DecorationImage(image: AssetImage("assets/images/cover.jpg"),
-                    fit: BoxFit.fill,),)
+                    fit: BoxFit.fill,),),
 
             ),
             Container(height: size.height*0.06,),
@@ -46,12 +49,12 @@ class User extends StatelessWidget {
          Column(
            children: [
 
-             const CircleAvatar(
+               CircleAvatar(
                   radius: 55,
-                  backgroundImage: AssetImage('assets/images/kogoro.jpg')
+                  backgroundImage: NetworkImage(passedData['image'])
               ),
              SizedBox(height: size.height*0.01,),
-             const Text('Mouri kogoro',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              Text((passedData['user'] as TheUsers).firstName! + " " +  (passedData['user'] as TheUsers).lastName!,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
            ],
          ),
 
@@ -64,7 +67,7 @@ class User extends StatelessWidget {
         children: [
            const Icon(Icons.email),
           SizedBox(width: size.width*0.03,),
-        const  Text('Metante.Kogoro@gmail.com',style:TextStyle(fontSize: 16,color: Colors.grey) ,),
+          Text((passedData['user'] as TheUsers).email!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
         ],
       ),
       SizedBox(height: size.height*0.01,),
@@ -72,7 +75,7 @@ class User extends StatelessWidget {
         children: [
           const Icon(Icons.phone),
           SizedBox(width: size.width*0.03,),
-          const Text('+81 72 8123456',style:TextStyle(fontSize: 16,color: Colors.grey) ,),
+          Text('+81 72 8123456',style:TextStyle(fontSize: 16,color: Colors.grey) ,),
         ],
       ),
       SizedBox(height: size.height*0.01,),
@@ -80,7 +83,7 @@ class User extends StatelessWidget {
         children: [
           const Text('member ''at '),
           SizedBox(width: size.width*0.03,),
-          const Text('detecting team',style:TextStyle(fontSize: 16,color: Colors.grey) ,),
+          Text((passedData['user'] as TheUsers).employeeIdentical!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
         ],
       ),
     ],
