@@ -158,7 +158,7 @@ class _UsersState extends State<Users> {
                                           Text(context
                                               .watch<UserController>()
                                               .allUsersModel!
-                                              .theUsers![index].roleId == 2
+                                              .theUsers![index].roleId == 3
                                               ? 'leader'
                                               : 'member'),
                                           SizedBox(width: 30,),
@@ -166,16 +166,23 @@ class _UsersState extends State<Users> {
                                          PopupMenuButton( icon: const Icon(Icons.more_vert),
                                              onSelected: (value){
                                                 if(value == 1){
-                                                  //TODO: promote or demote user
+                                                  context.read<UserController>().updateUser(context
+                                                      .read<UserController>()
+                                                      .allUsersModel!
+                                                      .theUsers![index]);
                                                 }else{
-                                                  //TODO: delete user
+                                                  context.read<UserController>().deleteUser(context
+                                                      .read<UserController>()
+                                                      .allUsersModel!
+                                                      .theUsers![index].id!);
                                                 }
+
                                              },
                                              itemBuilder: (BuildContext context) {
                                                String changeTo = context
                                                    .read<UserController>()
                                                    .allUsersModel!
-                                                   .theUsers![index].roleId == 2 ? "demote to member" : "promote to leader";
+                                                   .theUsers![index].roleId == 3 ? "demote to member" : "promote to leader";
 
                                                 return [
                                                   PopupMenuItem<int>(

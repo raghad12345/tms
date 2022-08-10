@@ -17,6 +17,7 @@ class ServerConfig{
   static String getCommentsByTaskId = "api/task/show/comments/3";
   static String showUsers = "api/admin/user/show/users";
   static String postCommentToTask = "api/task/3/comment/add";
-
+  static String deleteUser = "api/admin/user/delete/";
+  static String updateUser = "api/admin/user/update/";
 
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tracker/services/user_service.dart';
 import 'package:tracker/models/user_model.dart';
@@ -40,5 +42,16 @@ class UserController with ChangeNotifier {
     notifyListeners();
   }
 
+  Future deleteUser(int id) async{
+      await UserService.deleteUser(id);
+      getAllUsers();
+  }
+
+ Future updateUser(TheUsers theUsers) async{
+    await UserService.updateUser(theUsers);
+      getAllUsers();
+
+
+ }
 
 }
