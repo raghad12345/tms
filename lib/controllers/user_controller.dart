@@ -47,8 +47,8 @@ class UserController with ChangeNotifier {
       getAllUsers();
   }
 
- Future updateUser(TheUsers theUsers) async{
-    await UserService.updateUser(theUsers);
+ Future updateUser(UserModel userModel) async{
+    await UserService.updateUser(userModel);
       getAllUsers();
 
 

@@ -54,7 +54,7 @@ class User extends StatelessWidget {
                   backgroundImage: NetworkImage(passedData['image'])
               ),
              SizedBox(height: size.height*0.01,),
-              Text((passedData['user'] as TheUsers).firstName! + " " +  (passedData['user'] as TheUsers).lastName!,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              Text((passedData['user'] as UserModel).firstName! + " " +  (passedData['user'] as UserModel).lastName!,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
            ],
          ),
 
@@ -67,7 +67,7 @@ class User extends StatelessWidget {
         children: [
            const Icon(Icons.email),
           SizedBox(width: size.width*0.03,),
-          Text((passedData['user'] as TheUsers).email!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
+          Text((passedData['user'] as UserModel).email!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
         ],
       ),
       SizedBox(height: size.height*0.01,),
@@ -75,7 +75,7 @@ class User extends StatelessWidget {
         children: [
           const Icon(Icons.phone),
           SizedBox(width: size.width*0.03,),
-          Text('+81 72 8123456',style:TextStyle(fontSize: 16,color: Colors.grey) ,),
+          Text((passedData['user'] as UserModel).phone!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
         ],
       ),
       SizedBox(height: size.height*0.01,),
@@ -83,7 +83,7 @@ class User extends StatelessWidget {
         children: [
           const Text('member ''at '),
           SizedBox(width: size.width*0.03,),
-          Text((passedData['user'] as TheUsers).employeeIdentical!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
+          Text((passedData['user'] as UserModel).employeeIdentical!,style:TextStyle(fontSize: 16,color: Colors.grey) ,),
         ],
       ),
     ],

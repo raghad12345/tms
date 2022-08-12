@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
+import 'package:tracker/config/server_config.dart';
 import 'package:tracker/controllers/user_controller.dart';
 import 'package:tracker/shared/components.dart';
 import 'package:tracker/models/model_user.dart';
@@ -100,7 +101,7 @@ class _UsersState extends State<Users> {
                           ListView.builder(itemCount: context
                               .watch<UserController>()
                               .allUsersModel!
-                              .theUsers!
+                              .allUser!
                               .length, itemBuilder: (context, index) =>
                               InkWell(
                                 onTap: () {
@@ -109,8 +110,11 @@ class _UsersState extends State<Users> {
                                         'user': context
                                             .read<UserController>()
                                             .allUsersModel!
-                                            .theUsers![index],
-                                        'image': DataUser.dataUs[index].Img
+                                            .allUser![index],
+                                        'image':ServerConfig.domainName + (context
+                                            .read<UserController>()
+                                            .allUsersModel!
+                                            .allUser![index].imgProfile ?? "")
                                       });
                                 },
                                 child: Padding(
@@ -119,7 +123,10 @@ class _UsersState extends State<Users> {
 
                                     CircleAvatar(radius: 30,
                                         backgroundImage: NetworkImage(
-                                            DataUser.dataUs[index].Img
+                                            ServerConfig.domainName + (context
+                                                .read<UserController>()
+                                                .allUsersModel!
+                                                .allUser![index].imgProfile ?? "")
 
                                         )),
                                     SizedBox(width: 10,),
@@ -141,7 +148,7 @@ class _UsersState extends State<Users> {
                                                 Text(context
                                                     .watch<UserController>()
                                                     .allUsersModel!
-                                                    .theUsers![index]
+                                                    .allUser![index]
                                                     .firstName!),
 
                                                 SizedBox(height: 3,),
@@ -149,7 +156,7 @@ class _UsersState extends State<Users> {
                                                 Text(context
                                                     .watch<UserController>()
                                                     .allUsersModel!
-                                                    .theUsers![index].email!),
+                                                    .allUser![index].email!),
 
 
                                               ],),
@@ -158,23 +165,34 @@ class _UsersState extends State<Users> {
                                           Text(context
                                               .watch<UserController>()
                                               .allUsersModel!
-                                              .theUsers![index].roleId == 3
-                                              ? 'leader'
-                                              : 'member'),
+                                              .allUser![index].roleId == 3
+                                              ? 'member':
+                                              context
+                                              .watch<UserController>()
+                                              .allUsersModel!
+                                              .allUser![index].roleId == 2 ? 'leader' : 'admin'),
                                           SizedBox(width: 30,),
 
                                          PopupMenuButton( icon: const Icon(Icons.more_vert),
                                              onSelected: (value){
+                                              if(context
+                                                  .read<UserController>()
+                                                  .allUsersModel!
+                                                  .allUser![index].roleId == 1) {
+                                                return;
+                                              }
+                                              print('start');
                                                 if(value == 1){
                                                   context.read<UserController>().updateUser(context
                                                       .read<UserController>()
                                                       .allUsersModel!
-                                                      .theUsers![index]);
+                                                      .allUser![index]);
                                                 }else{
+                                                  print('delete');
                                                   context.read<UserController>().deleteUser(context
                                                       .read<UserController>()
                                                       .allUsersModel!
-                                                      .theUsers![index].id!);
+                                                      .allUser![index].userId!);
                                                 }
 
                                              },
@@ -182,7 +200,7 @@ class _UsersState extends State<Users> {
                                                String changeTo = context
                                                    .read<UserController>()
                                                    .allUsersModel!
-                                                   .theUsers![index].roleId == 3 ? "demote to member" : "promote to leader";
+                                                   .allUser![index].roleId == 3 ? "promote to leader" : "demote to member" ;
 
                                                 return [
                                                   PopupMenuItem<int>(
@@ -199,6 +217,7 @@ class _UsersState extends State<Users> {
 
                                         ],),
                                     ),
+
 
                                   ],),
                                 ),
